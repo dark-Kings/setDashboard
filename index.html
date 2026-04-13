@@ -33,6 +33,9 @@
                 plan: "Basic Plan",
                 profileImage: "assets/header_sidebar/jpg_image/profileImage.jpg",
             },
+            sidebarImage: {
+                image: "assets/header_sidebar/svg_image/Child.svg"
+            },
             menu: [{
                 id: "Overview",
                 label: "Overview",
@@ -220,7 +223,7 @@
 
     <!-- Illustration -->
     <div class="xl:flex xl:justify-center xl:mb-[100px]">
-      <img src="assets/header_sidebar/svg_image/child.svg"
+      <img src=${data.sidebarImage.image}
            class="xl:w-[158px] xl:h-[190px] object-contain">
     </div>
 
