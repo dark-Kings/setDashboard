@@ -6,6 +6,7 @@
   <title>Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body class="bg-white">
@@ -17,12 +18,13 @@
     </div>
     <!-- Sidebar -->
     <aside id="sidebar" class="fixed xl:static top-0 left-0 z-50
-           w-[260px]  max-w-[80%] h-full xl:h-[1024px]
-           bg-white px-[25px] pt-[30px]
-           border-r
-           transform -translate-x-full xl:translate-x-0
-           transition-transform duration-300">
-    </aside>
+         w-[260px] max-w-[80%] h-screen xl:h-[1024px]
+         bg-white px-[25px] pt-[30px]
+         border-r
+         transform -translate-x-full xl:translate-x-0
+         transition-transform duration-300
+         flex flex-col
+         overflow-y-auto"></aside>
 
     <!-- Main -->
     <main id="mainContent" class="flex-1 px-4 py-4 xl:px-8 xl:py-8 bg-white border-r">
@@ -30,7 +32,7 @@
 
     <!-- Right Panel -->
     <aside id="rightPanel" class="w-full xl:w-[470px] xl:max-w-[470px] 
-           bg-white px-4 py-6 xl:px-6 xl:py-8 border-l">
+           bg-white px-4 py-2 xl:px-6 xl:py-8 border-l">
     </aside>
 
   </div>
@@ -425,6 +427,10 @@
     function renderSidebar(data) {
       sidebar.innerHTML = `
 
+<div class="flex flex-col h-full">
+
+  <!-- Top Section -->
+  <div class="flex flex-col gap-6">
   <!-- Logo -->
   <div class="ml-2 mt-4 mb-10 sm:ml-4 sm:mb-12 lg:ml-4 lg:mb-16 xl:ml-[24px] xl:mb-[125px]">
     <img src="assets/header_sidebar/png_image/logo.png" 
@@ -472,7 +478,10 @@
   `).join("")}
 
 </nav>
+  </div>
 
+  <!-- Bottom Section -->
+  <div class="mt-auto">
   <!-- Illustration -->
   <div class="hidden sm:flex justify-center mb-10 sm:mb-12 lg:mb-14 xl:mb-[100px]">
     <img src="${data.sidebarImage.image}"
@@ -480,7 +489,7 @@
   </div>
 
   <!-- Card -->
-  <div class="bg-[#EAF4FF] rounded-xl sm:rounded-2xl 
+  <div class="bg-[#EAF4FF] rounded-xl sm:rounded-2xl mb-5
               px-3 py-3 sm:px-4 sm:py-4 
               flex flex-col gap-3 sm:gap-4 
               w-full max-w-[160px] sm:max-w-[170px] xl:w-[168px]">
@@ -511,7 +520,7 @@
       </button>
 
     </div>
-
+</div>
   </div>
 
   `;
@@ -839,7 +848,7 @@ ${renderMainTopStrip(data)}
       })}
 
   <!-- Statistics -->
-  <div class="mt-6 sm:mt-8 xl:mt-5">
+  <div class="mt-2 sm:mt-4 xl:mt-5">
 
     <h2 class="text-[18px] sm:text-[20px] xl:text-[24px] font-bold">
       Statistics
@@ -896,7 +905,7 @@ ${renderMainTopStrip(data)}
     <div class="overflow-x-auto">
 
       <div class="flex items-end justify-between 
-                  min-w-[300px] sm:min-w-0 
+                  xl:min-w-[300px] 
                   h-[300px]">
 
         ${data.weeklyActivity.map(day => `
@@ -904,7 +913,7 @@ ${renderMainTopStrip(data)}
           <div class="flex flex-col items-center gap-1 sm:gap-2">
 
             <!-- Bar -->
-            <div class="w-[18px] sm:w-[22px] xl:w-[30px] rounded-full
+            <div class="w-[15px] sm:w-[22px] xl:w-[30px] rounded-full
                         ${day.active ? 'bg-[#369FFF]' : 'bg-[#DCE6F1]'}"
                  style="height:${day.value}px">
             </div>
