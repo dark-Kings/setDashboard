@@ -2,193 +2,202 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-white">
 
-    <div class="xl:flex xl:h-screen max-w-[1440px] ">
+  <div class="xl:flex xl:h-screen ">
 
-        <!-- Sidebar -->
-        <aside id="sidebar" class="xl:w-[238px] xl:h-[1024px] xl:bg-white 
-         xl:px-[35px] xl:pt-[44px] xl:flex xl:flex-col">
-        </aside>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="xl:w-[238px] xl:h-[1024px] xl:bg-white 
+         xl:px-[35px] xl:pt-[44px] xl:flex xl:flex-col xl:border-r">
+    </aside>
 
-        <!-- Middle Section -->
-        <main id="mainContent" class="xl:flex-1 xl:px-8 xl:py-8  bg-white  xl:border-r xl:w-[710px]">
-        </main>
+    <!-- Middle Section -->
+    <main id="mainContent" class="xl:flex-1 xl:px-8 xl:py-8  bg-white  xl:border-r  xl:h-[1024px]">
+    </main>
 
-        <!-- Right Panel -->
-        <aside id="rightPanel" class="xl:w-[470px] max-w-[470px] xl:bg-white xl:px-6 xl:py-8 xl:border-l">
-        </aside>
+    <!-- Right Panel -->
+    <aside id="rightPanel" class="xl:w-[470px] max-w-[470px] xl:bg-white xl:px-6 xl:py-8 xl:border-l xl:h-[1024px]">
+    </aside>
 
-    </div>
+  </div>
 
-    <script>
-        const dashboardData = {
-            user: {
-                name: "BRUNO",
-                plan: "Basic Plan",
-                profileImage: "assets/header_sidebar/jpg_image/profileImage.jpg",
-            },
-            sidebarImage: {
-                image: "assets/header_sidebar/svg_image/Child.svg"
-            },
-            menu: [{
-                id: "Overview",
-                label: "Overview",
-                svg: `
+  <script>
+    const dashboardData = {
+      user: {
+        name: "BRUNO",
+        last: "Fernandes",
+        plan: "Basic Plan",
+        profileImage: "assets/header_sidebar/jpg_image/profileImage.jpg",
+      },
+      sidebarImage: {
+        image: "assets/header_sidebar/svg_image/Child.svg"
+      },
+      menu: [{
+        id: "Overview",
+        label: "Overview",
+        svg: `
                  <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M17.839 5.65899C18.509 6.17799 18.92 6.94899 18.99 7.78799L19 7.98899V16.098C19 18.188 17.349 19.888 15.28 19.998H13.29C12.339 19.979 11.57 19.239 11.5 18.309L11.49 18.168V15.309C11.49 14.998 11.259 14.739 10.95 14.688L10.86 14.678H8.189C7.87 14.688 7.61 14.918 7.57 15.218L7.56 15.309V18.159C7.56 18.218 7.549 18.288 7.54 18.338L7.53 18.359L7.519 18.428C7.4 19.279 6.7 19.928 5.83 19.989L5.7 19.998H3.91C1.82 19.998 0.11 18.359 0 16.298V7.98899C0.009 7.13799 0.38 6.34799 1 5.79799L7.23 0.787988C8.5 -0.221012 10.28 -0.261012 11.589 0.667988L11.75 0.787988L17.839 5.65899ZM17.599 16.258L17.61 16.098V7.99799C17.599 7.56899 17.42 7.16799 17.11 6.86899L16.98 6.75799L10.88 1.87799C10.12 1.26799 9.04 1.23899 8.24 1.76799L8.089 1.87799L2.009 6.77899C1.66 7.03799 1.45 7.42799 1.4 7.83799L1.389 7.99799V16.098C1.389 17.428 2.429 18.518 3.75 18.598H5.7C5.92 18.598 6.11 18.449 6.139 18.239L6.16 18.059L6.17 18.008V15.309C6.17 14.239 6.99 13.369 8.04 13.288H10.86C11.929 13.288 12.799 14.109 12.88 15.159V18.168C12.88 18.378 13.03 18.559 13.23 18.598H15.089C16.429 18.598 17.519 17.569 17.599 16.258Z" fill="#369FFF"/>
 </svg>
                 `,
-            },
-            {
-                id: "Course",
-                label: "Course",
-                svg: `
+      },
+      {
+        id: "Course",
+        label: "Course",
+        svg: `
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.01367 10.9453C7.6585 10.9454 8.98905 12.2878 8.98926 13.9414V17.0049C8.98901 18.6577 7.65828 19.9999 6.01367 20H2.97559C1.33096 19.9999 0.000247709 18.6577 0 17.0049V13.9414C0.000207027 12.2878 1.33074 10.9454 2.97559 10.9453H6.01367ZM17.0254 10.9453C18.6694 10.9454 19.9998 12.288 20 13.9414V17.0049C19.9998 18.6575 18.6692 19.9999 17.0254 20H13.9863C12.3417 19.9999 11.011 18.6577 11.0107 17.0049V13.9414C11.0109 12.2878 12.3415 10.9454 13.9863 10.9453H17.0254ZM2.97559 12.3408C2.10417 12.3409 1.39571 13.0556 1.39551 13.9414V17.0049C1.39575 17.8897 2.1043 18.6054 2.97559 18.6055H6.01367C6.88494 18.6054 7.5935 17.8897 7.59375 17.0049V13.9414C7.59354 13.0557 6.88507 12.3409 6.01367 12.3408H2.97559ZM13.9863 12.3408C13.1149 12.3409 12.4065 13.0557 12.4062 13.9414V17.0049C12.4065 17.8897 13.1151 18.6054 13.9863 18.6055H17.0254C17.8958 18.6054 18.6042 17.8896 18.6045 17.0049V13.9414C18.6043 13.0558 17.8959 12.3409 17.0254 12.3408H13.9863ZM6.01367 0C7.6583 0.000104544 8.98904 1.34229 8.98926 2.99512V6.05957C8.98926 7.71191 7.65815 9.05458 6.01367 9.05469H2.97559C1.33109 9.0546 0 7.71192 0 6.05957V2.99512C0.000215214 1.34228 1.33094 8.40509e-05 2.97559 0H6.01367ZM17.0254 0C18.6692 0.000117326 19.9998 1.34249 20 2.99512V6.05957C20 7.7117 18.6691 9.05457 17.0254 9.05469H13.9863C12.3418 9.05458 11.0107 7.71191 11.0107 6.05957V2.99512C11.011 1.34229 12.3417 0.000104285 13.9863 0H17.0254ZM2.97559 1.39551C2.10428 1.39559 1.39572 2.11022 1.39551 2.99512V6.05957C1.39551 6.94406 2.10452 7.66007 2.97559 7.66016H6.01367C6.88472 7.66005 7.59375 6.94405 7.59375 6.05957V2.99512C7.59354 2.11024 6.88496 1.39561 6.01367 1.39551H2.97559ZM13.9863 1.39551C13.115 1.39561 12.4065 2.11024 12.4062 2.99512V6.05957C12.4062 6.94405 13.1153 7.66005 13.9863 7.66016H17.0254C17.8956 7.66004 18.6045 6.94394 18.6045 6.05957V2.99512C18.6043 2.11035 17.8958 1.39563 17.0254 1.39551H13.9863Z" fill="#BDBDBD"/>
 </svg>
 
                 `,
-            },
-            {
-                id: "Resources",
-                label: "Resources",
-                svg: `
+      },
+      {
+        id: "Resources",
+        label: "Resources",
+        svg: `
                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M7.38477 0C8.30694 5.42485e-05 9.17573 0.434824 9.72852 1.17285L10.6094 2.34668C10.8901 2.71992 11.3297 2.94043 11.7949 2.94141H14.5293C18.3103 2.94141 20 4.92285 20 8.9707L19.9736 13.7715C19.9736 17.6347 17.611 20 13.7529 20H6.22949C2.36396 20 0 17.6361 0 13.7715V6.22852C0 2.17549 1.73023 0 5.45312 0H7.38477ZM5.45312 1.45117C2.61265 1.45117 1.44922 2.91377 1.44922 6.22852V13.7715C1.44922 16.8341 3.16414 18.5488 6.22949 18.5488H13.7529C16.8104 18.5488 18.5244 16.8331 18.5244 13.7676L18.5508 8.9668C18.5508 5.67814 17.4544 4.39258 14.5293 4.39258H11.7939C10.873 4.39074 10.0055 3.95678 9.45117 3.21973L8.56934 2.04492C8.28978 1.67168 7.85069 1.45123 7.38477 1.45117H5.45312ZM14.6182 11.8184C15.0183 11.8186 15.3428 12.1433 15.3428 12.5439C15.3427 12.9113 15.0695 13.2146 14.7158 13.2627L14.6182 13.2695H5.34668C4.94657 13.2694 4.62215 12.9446 4.62207 12.5439C4.62207 12.1765 4.89526 11.8723 5.24902 11.8242L5.34668 11.8184H14.6182Z" fill="#BDBDBD"/>
 </svg>
 
                 `,
-            },
-            {
-                id: "Message",
-                label: "Message",
-                svg: `
+      },
+      {
+        id: "Message",
+        label: "Message",
+        svg: `
                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.0574 8.00255e-05C14.2109 0.0306835 17.9148 2.6182 19.367 6.50399C20.8193 10.3902 19.7182 14.7681 16.5994 17.5079C13.481 20.2471 8.9931 20.7798 5.31817 18.8477L5.27227 18.8321C5.26521 18.828 5.26401 18.8241 5.2625 18.8194L4.57989 18.4327C4.44097 18.3759 4.28626 18.367 4.19219 18.3907C3.48281 18.6457 2.75747 18.8551 2.02129 19.0177L1.88653 19.0343C1.07597 19.0522 0.667776 18.5262 0.667776 17.7608L0.687307 17.5968C0.871346 16.8357 1.10158 16.0863 1.36407 15.3927C1.40474 15.2614 1.39134 15.1191 1.3211 14.9874L1.1375 14.629C-0.48724 11.5225 -0.364429 7.79335 1.46074 4.79988C3.28568 1.80712 6.5461 -0.0139096 10.0574 8.00255e-05ZM9.76739 1.39852C6.85495 1.48185 4.1736 3.03133 2.65215 5.52645C1.08187 8.10187 0.976406 11.3099 2.37676 13.9874L2.55742 14.3399C2.79801 14.7901 2.84795 15.3181 2.6834 15.8448C2.4722 16.4057 2.29078 16.9775 2.1375 17.5567L2.53301 17.4542C2.80378 17.3795 3.07591 17.2964 3.35235 17.2052L3.77129 17.0616C4.21333 16.94 4.68332 16.9685 5.14629 17.1593C5.24344 17.2061 5.36453 17.2707 5.51641 17.3565L5.93926 17.5987C5.94619 17.6006 5.95215 17.6033 5.95684 17.6046L5.94512 17.6026L6.23223 17.7472C9.25773 19.2079 12.8628 18.778 15.4588 16.6466L15.6785 16.4591C18.362 14.1016 19.3098 10.3355 18.0604 6.99227C16.8108 3.64875 13.6231 1.42207 10.0486 1.39461L9.76739 1.39852ZM5.61602 8.85946C6.24599 8.85959 6.7576 9.36998 6.75762 10.0001C6.75762 10.6302 6.24601 11.1406 5.61602 11.1407C4.98592 11.1407 4.47442 10.6303 4.47442 10.0001C4.47444 9.36989 4.98593 8.85946 5.61602 8.85946ZM10.0525 8.85946C10.6826 8.85946 11.1941 9.3699 11.1941 10.0001C11.1941 10.6303 10.6826 11.1407 10.0525 11.1407C9.42249 11.1406 8.91094 10.6302 8.91094 10.0001C8.91096 9.36993 9.42251 8.85952 10.0525 8.85946ZM14.4891 8.85946C15.1191 8.85946 15.6306 9.3699 15.6307 10.0001C15.6307 10.6303 15.1192 11.1407 14.4891 11.1407C13.8592 11.1405 13.3484 10.6301 13.3484 10.0001C13.3485 9.37005 13.8592 8.85971 14.4891 8.85946Z" fill="#BDBDBD"/>
 </svg>
 
                 `,
-            },
-            {
-                id: "Setting",
-                label: "Setting",
-                svg: `<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      },
+      {
+        id: "Setting",
+        label: "Setting",
+        svg: `<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.1161 1.4331e-07C10.8249 -0.000231542 11.5038 0.280465 11.998 0.77832C12.4921 1.27641 12.7597 1.95017 12.7382 2.57813L12.747 2.72559C12.7643 2.87093 12.8122 3.01133 12.8905 3.14063C13.0432 3.39573 13.2937 3.58095 13.5858 3.65527C13.8779 3.72947 14.1885 3.68697 14.4823 3.51855L14.6454 3.43555C15.8754 2.86908 17.3509 3.31942 18.0331 4.47949L18.6464 5.52148C18.6625 5.5489 18.6771 5.57739 18.6894 5.60645L18.746 5.71875C19.2942 6.86539 18.9039 8.22889 17.8622 8.92188L17.6054 9.08105C17.471 9.17286 17.3586 9.29247 17.2743 9.43652C17.122 9.69261 17.0802 9.9978 17.1581 10.2842C17.2361 10.5706 17.4275 10.8151 17.7177 10.9795L17.8847 11.084C18.3888 11.4296 18.7531 11.9397 18.912 12.5234C19.0911 13.182 18.9946 13.8835 18.6396 14.4805L17.9804 15.5566L17.8808 15.709C17.1059 16.8007 15.6013 17.1343 14.453 16.4854L14.3163 16.416C14.1744 16.3539 14.0211 16.3202 13.8817 16.3164C13.5784 16.315 13.2867 16.4325 13.0722 16.6426C12.8579 16.8527 12.7384 17.138 12.7392 17.4697L12.7314 17.6416C12.6202 18.9704 11.4841 20 10.1161 20H8.88077C7.43207 19.9999 6.25736 18.8493 6.2587 17.4756L6.25088 17.3281C6.23363 17.1827 6.18477 17.0414 6.10245 16.9053C5.95309 16.6497 5.70528 16.4629 5.41495 16.3867C5.12455 16.3107 4.81501 16.3519 4.51553 16.5215L4.3378 16.6084C3.77492 16.8564 3.13978 16.9019 2.54483 16.7363C1.87355 16.5494 1.30581 16.1082 0.974516 15.5225L0.336821 14.4443L0.25186 14.2842C-0.328375 13.0839 0.126591 11.641 1.28116 10.9873L1.38663 10.9229C1.69494 10.7137 1.87979 10.3687 1.87979 10C1.87979 9.59898 1.66117 9.2286 1.2792 9.01172L1.12393 8.91406C0.00970968 8.15468 -0.330077 6.68025 0.360259 5.50684L1.0087 4.46191C1.73081 3.23405 3.33162 2.81042 4.56241 3.50195L4.69522 3.57129C4.83103 3.63235 4.97897 3.66453 5.121 3.66602C5.74727 3.66599 6.25791 3.17356 6.26749 2.54199L6.2753 2.34766C6.32662 1.74706 6.59337 1.18298 7.02823 0.754883C7.51883 0.271954 8.18531 5.2756e-05 8.88077 1.4331e-07H10.1161ZM8.88077 1.44727C8.57849 1.44732 8.28837 1.56554 8.0751 1.77539C7.88604 1.96151 7.77022 2.20734 7.74991 2.43652L7.73721 2.74121C7.63376 4.07055 6.49957 5.11438 5.11319 5.11426C4.75583 5.11062 4.40311 5.03276 4.04385 4.87012L3.85147 4.77051C3.30344 4.46313 2.60444 4.64829 2.28018 5.19922L1.63077 6.24414C1.33326 6.75001 1.48262 7.39439 1.94327 7.70898L2.20401 7.87109C2.9219 8.34676 3.35733 9.14303 3.35733 10C3.35733 10.8445 2.93395 11.6343 2.20206 12.1299L2.04678 12.2256C1.53393 12.5163 1.33576 13.1443 1.57413 13.6387L1.62979 13.7451L2.25967 14.8086C2.40741 15.0696 2.65514 15.2621 2.94815 15.3438C3.20801 15.4161 3.48568 15.3963 3.70206 15.3018L3.81045 15.25C4.4106 14.9069 5.12655 14.8123 5.79776 14.9883C6.46869 15.1643 7.03978 15.5961 7.37881 16.1768C7.56117 16.4778 7.67689 16.8131 7.72159 17.1982L7.74209 17.5518C7.8043 18.1141 8.29027 18.5526 8.88077 18.5527H10.1161C10.7134 18.5527 11.2101 18.1019 11.2567 17.5508L11.2616 17.4424C11.2583 16.7588 11.5348 16.1016 12.0282 15.6182C12.5216 15.1351 13.1915 14.8646 13.9052 14.8682C14.2554 14.8774 14.6007 14.955 14.953 15.1104L15.2685 15.2686C15.7644 15.4818 16.3531 15.3253 16.6513 14.9062L16.7235 14.7959L17.3681 13.7432C17.5201 13.4873 17.562 13.1826 17.4843 12.8965C17.4152 12.6427 17.2564 12.4206 17.0644 12.2881L16.7919 12.1191C16.2715 11.7744 15.8933 11.2559 15.7304 10.6572C15.5511 9.99852 15.6475 9.29731 15.995 8.71289C16.1853 8.38745 16.4461 8.107 16.787 7.875L16.9481 7.77637C17.4601 7.48291 17.6574 6.85456 17.4208 6.3584L17.3505 6.22559L17.3378 6.19727L16.7528 5.20215C16.4763 4.73184 15.9004 4.52894 15.412 4.68945L15.3017 4.73242L15.1981 4.78418C14.6 5.12938 13.8857 5.22755 13.2138 5.05664C12.5419 4.88563 11.9672 4.45934 11.6181 3.87598C11.4357 3.57488 11.32 3.23974 11.2753 2.85449L11.2626 2.60254C11.2715 2.29931 11.1542 2.00562 10.9384 1.78809C10.7226 1.57057 10.426 1.44717 10.1161 1.44727H8.88077ZM9.50381 6.73145C11.3457 6.7318 12.8395 8.19542 12.8398 10C12.8395 11.8046 11.3457 13.2672 9.50381 13.2676C7.66165 13.2676 6.16808 11.8048 6.16788 10C6.16808 8.19521 7.66165 6.73145 9.50381 6.73145ZM9.50381 8.17871C8.47775 8.17871 7.64562 8.99477 7.64541 10C7.64562 11.0052 8.47775 11.8203 9.50381 11.8203C10.5296 11.82 11.361 11.005 11.3612 10C11.361 8.99499 10.5296 8.17906 9.50381 8.17871Z" fill="#BDBDBD"/></svg>`,
-            },
+      },
 
-            ],
-            courses: [
-                {
-                    title: "French",
-                    lessons: 35,
-                    progress: 75,
-                    color: "from-sky-500 to-sky-400",
-                    icon: "assets/middle_section/svg_images/Eiffel_Tower.svg",
-                    accent: "bg-sky-100",
-                },
-                {
-                    title: "Portuguese",
-                    lessons: 30,
-                    progress: 50,
-                    color: "from-orange-400 to-orange-300",
-                    icon: "assets/middle_section/svg_images/train.svg",
-                    accent: "bg-orange-100",
-                },
-                {
-                    title: "Italian",
-                    lessons: 20,
-                    progress: 25,
-                    color: "from-emerald-400 to-emerald-300",
-                    icon: "assets/middle_section/svg_images/Leaning_Tower.svg",
-                    accent: "bg-emerald-100",
-                },
-                {
-                    title: "German",
-                    lessons: 40,
-                    progress: 75,
-                    color: "from-yellow-300 to-yellow-200",
-                    icon: "assets/middle_section/svg_images/parliament.svg",
-                    accent: "bg-yellow-100",
-                },
-            ],
-            planning: [
-                {
-                    title: "Reading - Beginner Topic 1",
-                    time: "8:00 AM - 10:00 AM",
-                    icon: "assets/middle_section/svg_images/book.svg",
-                    bg: "#369FFF",
-                },
-                {
-                    title: "Listening - Intermediate Topic 1",
-                    time: "03:00 PM - 04:00 PM",
-                    icon: "assets/middle_section/svg_images/headphones.svg",
-                    bg: "#8AC53E",
-                },
-                {
-                    title: "Speaking - Beginner Topic 1",
-                    time: "8:00 AM - 12:00 PM",
-                    icon: "assets/middle_section/svg_images/volume.svg",
-                    bg: "#FFD143",
-                },
-                {
-                    title: "Grammar - Intermediate Topic 2",
-                    time: "8:00 AM - 12:00 PM",
-                    icon: "assets/middle_section/svg_images/edit.svg",
-                    bg: "#FF993A",
-                },
-                {
-                    title: "Reading - Beginner Topic 1",
-                    time: "01:00 PM - 02:00 PM",
-                    icon: "assets/middle_section/svg_images/book.svg",
-                    bg: "#FF993A",
-                },
-                {
-                    title: "Speaking - Advanced Topic 1",
-                    time: "07:00 PM - 08:00 PM",
-                    icon: "assets/middle_section/svg_images/volume.svg",
-                    bg: "#FFD143",
-                },
-                {
-                    title: "Listening - Beginner Topic 1",
-                    time: "8:00 AM - 12:00 PM",
-                    icon: "assets/middle_section/svg_images/headphones.svg",
-                    bg: "#8AC53E",
-                },
-                {
-                    title: "Reading - Advanced Topic 1",
-                    time: "8:00 AM - 12:00 PM",
-                    icon: "assets/middle_section/svg_images/book.svg",
-                    bg: "#369FFF",
-                },
-            ],
-            statistics: [
-                { label: "Courses Completed", value: "02" },
-                { label: "Total Points Gained", value: "250" },
-                { label: "Courses In Progress", value: "03" },
-                { label: "Tasks Finished", value: "05" },
-            ],
-            weeklyActivity: [
-                { day: "Mon", value: 42, active: false },
-                { day: "Tue", value: 52, active: false },
-                { day: "Wed", value: 58, active: false },
-                { day: "Thu", value: 90, active: true },
-                { day: "Fri", value: 70, active: false },
-                { day: "Sat", value: 62, active: false },
-                { day: "Sun", value: 50, active: false },
-            ],
-        };
+      ],
+      courses: [
+        {
+          title: "French",
+          lessons: 35,
+          progress: 75,
+          icon: "assets/middle_section/svg_images/Eiffel_Tower.svg",
+          bgColor: "#369FFF",
+          shadowColor: "##369FFF66",
+          ringColor: '#006ED3',
+          overlayColor: '#006ED366'
+        },
+        {
+          title: "Portuguese",
+          lessons: 30,
+          progress: 50,
+          icon: "assets/middle_section/svg_images/train.svg",
+          bgColor: "#FF993A",
+          shadowColor: "#FF993A66",
+          ringColor: '#FF7E07',
+          overlayColor: '#FF7E0788'
+        },
+        {
+          title: "Italian",
+          lessons: 20,
+          progress: 25,
+          icon: "assets/middle_section/svg_images/Leaning_Tower.svg",
+          bgColor: "#8AC53E",
+          shadowColor: "#8AC53E66",
+          ringColor: '#008c4b2e',
+          overlayColor: '#008c4b2e'
+        },
+        {
+          title: "German",
+          lessons: 40,
+          progress: 75,
+          icon: "assets/middle_section/svg_images/parliament.svg",
+          bgColor: "#FFD143",
+          shadowColor: "#FFD14366",
+          ringColor: '#FFC000',
+          overlayColor: '#ffc000c7'
+        },
+      ],
+      planning: [
+        {
+          title: "Reading - Beginner Topic 1",
+          time: "8:00 AM - 10:00 AM",
+          icon: "assets/middle_section/svg_images/book.svg",
+          bg: "#369FFF",
+        },
+        {
+          title: "Listening - Intermediate Topic 1",
+          time: "03:00 PM - 04:00 PM",
+          icon: "assets/middle_section/svg_images/headphones.svg",
+          bg: "#8AC53E",
+        },
+        {
+          title: "Speaking - Beginner Topic 1",
+          time: "8:00 AM - 12:00 PM",
+          icon: "assets/middle_section/svg_images/volume.svg",
+          bg: "#FFD143",
+        },
+        {
+          title: "Grammar - Intermediate Topic 2",
+          time: "8:00 AM - 12:00 PM",
+          icon: "assets/middle_section/svg_images/edit.svg",
+          bg: "#FF993A",
+        },
+        {
+          title: "Reading - Beginner Topic 1",
+          time: "01:00 PM - 02:00 PM",
+          icon: "assets/middle_section/svg_images/book.svg",
+          bg: "#FF993A",
+        },
+        {
+          title: "Speaking - Advanced Topic 1",
+          time: "07:00 PM - 08:00 PM",
+          icon: "assets/middle_section/svg_images/volume.svg",
+          bg: "#FFD143",
+        },
+        {
+          title: "Listening - Beginner Topic 1",
+          time: "8:00 AM - 12:00 PM",
+          icon: "assets/middle_section/svg_images/headphones.svg",
+          bg: "#8AC53E",
+        },
+        {
+          title: "Reading - Advanced Topic 1",
+          time: "8:00 AM - 12:00 PM",
+          icon: "assets/middle_section/svg_images/book.svg",
+          bg: "#369FFF",
+        },
+      ],
+      statistics: [
+        { label: "Courses Completed", value: "02" },
+        { label: "Total Points Gained", value: "250" },
+        { label: "Courses In Progress", value: "03" },
+        { label: "Tasks Finished", value: "05" },
+      ],
+      weeklyActivity: [
+        { day: "Mon", value: 210, active: false },
+        { day: "Tue", value: 188, active: false },
+        { day: "Wed", value: 132, active: false },
+        { day: "Thu", value: 276, active: true },
+        { day: "Fri", value: 167, active: false },
+        { day: "Sat", value: 231, active: false },
+        { day: "Sun", value: 199, active: false },
+      ],
+    };
 
 
-        const sidebar = document.getElementById("sidebar");
+    const sidebar = document.getElementById("sidebar");
 
-        function renderSidebar(data) {
-            sidebar.innerHTML = `
+    function renderSidebar(data) {
+      sidebar.innerHTML = `
 
     <!-- Logo -->
     <div class="xl:ml-[24px] xl:mb-[125px]">
@@ -243,7 +252,7 @@
     <!-- Text -->
     <p class="xl:text-[12px] xl:flex xl:items-center">
       <span class="xl:text-gray-500">Go to</span>
-      <span class="xl:text-[#369FFF] xl:font-semibold xl:ml-1">PRO</span>
+      <span class="xl:text-[#369FFF] xl:font-bold xl:ml-1">PRO</span>
     </p>
 
     <!-- Button -->
@@ -262,163 +271,334 @@
 </div>
 
   `;
+    }
+
+    renderSidebar(dashboardData);
+
+    function setDefaultActiveState() {
+      const menuItems = document.querySelectorAll(".menu-item");
+
+      menuItems.forEach((item, index) => {
+        const text = item.querySelector(".menu-text");
+        const svg = item.querySelector("svg path");
+        const dot = item.querySelector(".menu-dot");
+
+        if (index === 0) {
+          if (text) text.style.color = "#369FFF";
+          if (svg) svg.setAttribute("fill", "#369FFF");
+
+          if (dot) {
+            dot.style.background = "#369FFF";
+            dot.classList.remove("xl:hidden");
+          }
+        } else {
+          if (text) text.style.color = "#BDBDBD";
+          if (svg) svg.setAttribute("fill", "#BDBDBD");
+
+          if (dot) dot.classList.add("xl:hidden");
         }
+      });
+    }
+    setDefaultActiveState()
+    const menuItems = document.querySelectorAll(".menu-item");
 
-        renderSidebar(dashboardData);
+    function handleMenuClick() {
+      const nav = document.querySelector("#sidebar nav");
 
-        function setDefaultActiveState() {
-            const menuItems = document.querySelectorAll(".menu-item");
+      nav.addEventListener("click", (e) => {
+        const item = e.target.closest(".menu-item");
+        if (!item) return;
 
-            menuItems.forEach((item, index) => {
-                const text = item.querySelector(".menu-text");
-                const svg = item.querySelector("svg path");
-                const dot = item.querySelector(".menu-dot");
+        const menuItems = nav.querySelectorAll(".menu-item");
 
-                if (index === 0) {
-                    if (text) text.style.color = "#369FFF";
-                    if (svg) svg.setAttribute("fill", "#369FFF");
+        // Reset all
+        menuItems.forEach(i => {
+          const text = i.querySelector(".menu-text");
+          const svg = i.querySelector("svg path");
+          const dot = i.querySelector(".menu-dot");
 
-                    if (dot) {
-                        dot.style.background = "#369FFF";
-                        dot.classList.remove("xl:hidden");
-                    }
-                } else {
-                    if (text) text.style.color = "#BDBDBD";
-                    if (svg) svg.setAttribute("fill", "#BDBDBD");
+          if (text) text.style.color = "#BDBDBD";
+          if (svg) svg.setAttribute("fill", "#BDBDBD");
 
-                    if (dot) dot.classList.add("xl:hidden");
-                }
-            });
+          if (dot) dot.classList.add("xl:hidden");
+        });
+
+        // Activate clicked
+        const text = item.querySelector(".menu-text");
+        const svg = item.querySelector("svg path");
+        const dot = item.querySelector(".menu-dot");
+
+        if (text) text.style.color = "#369FFF";
+        if (svg) svg.setAttribute("fill", "#369FFF");
+
+        if (dot) {
+          dot.style.background = "#369FFF";
+          dot.classList.remove("xl:hidden");
         }
-        setDefaultActiveState()
-        const menuItems = document.querySelectorAll(".menu-item");
+      });
+    }
+    handleMenuClick()
 
-        function handleMenuClick() {
-            const nav = document.querySelector("#sidebar nav");
 
-            nav.addEventListener("click", (e) => {
-                const item = e.target.closest(".menu-item");
-                if (!item) return;
+    const searchInput = document.getElementById("searchInput");
 
-                const menuItems = nav.querySelectorAll(".menu-item");
 
-                // Reset all
-                menuItems.forEach(i => {
-                    const text = i.querySelector(".menu-text");
-                    const svg = i.querySelector("svg path");
-                    const dot = i.querySelector(".menu-dot");
 
-                    if (text) text.style.color = "#BDBDBD";
-                    if (svg) svg.setAttribute("fill", "#BDBDBD");
+    const mainContent = document.getElementById("mainContent");
+    function handleSearch() {
+      const searchInput = document.getElementById("searchInput");
 
-                    if (dot) dot.classList.add("xl:hidden");
-                });
+      if (!searchInput) return;
 
-                // Activate clicked
-                const text = item.querySelector(".menu-text");
-                const svg = item.querySelector("svg path");
-                const dot = item.querySelector(".menu-dot");
-
-                if (text) text.style.color = "#369FFF";
-                if (svg) svg.setAttribute("fill", "#369FFF");
-
-                if (dot) {
-                    dot.style.background = "#369FFF";
-                    dot.classList.remove("xl:hidden");
-                }
-            });
+      searchInput.onkeydown = function (e) {
+        if (e.key === "Enter") {
+          alert(e.target.value);
         }
-        handleMenuClick()
-        const mainContent = document.getElementById("mainContent");
+      };
+    }
+    function animateProgressRings() {
+      const rings = document.querySelectorAll(".progress-ring");
 
-        function renderMain(data) {
-            mainContent.innerHTML = `
-    
-    <!-- Header -->
-    <div class="xl:mb-6">
-      <p class="xl:text-sm xl:text-gray-400">
-        Hello ${data.user.name}
-      </p>
-      <h1 class="xl:text-2xl xl:font-semibold">
-        My Courses
-      </h1>
+      rings.forEach((ring, index) => {
+        const progress = ring.getAttribute("data-progress");
+        const circumference = 132;
+
+        const offset = circumference - (progress / 100) * circumference;
+
+        setTimeout(() => {
+          ring.style.strokeDashoffset = -offset;
+        }, index * 150);
+      });
+    }
+    function handleCalendar() {
+      const trigger = document.getElementById("calendarTrigger");
+      const input = document.getElementById("datePicker");
+      const display = document.getElementById("selectedDate");
+
+      if (!trigger || !input || !display) return;
+
+      // Open calendar
+      trigger.onclick = () => {
+        input.showPicker(); // 🔥 modern browsers
+      };
+
+      // Update UI on date select
+      input.onchange = (e) => {
+        const date = new Date(e.target.value);
+
+        const formatted = date.toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        });
+
+        display.textContent = formatted;
+      };
+    }
+    function renderMain(data) {
+      mainContent.innerHTML = `
+
+<div class="xl:mb-6 xl:w-full">
+<!-- Header -->
+  <!-- Top: Hello -->
+  <p class="xl:text-[18px] xl:text-[#369FFF] xl:mb-2 xl:mt-[18px]">
+    Hello 
+    <span class="xl:font-bold">${data.user.name}</span>
+  </p>
+
+  <!-- Bottom: Title + Search -->
+  <div class="xl:flex xl:items-center xl:justify-between xl:mt-[30px] xl:w-full">
+
+    <!-- Left -->
+    <h1 class="xl:text-3xl xl:font-bold xl:text-gray-800">
+      My Courses
+    </h1>
+
+    <!-- Right (Search) -->
+    <div class="xl:flex xl:items-center xl:gap-3 xl:ml-auto">
+
+      <!-- Icon -->
+      <img src="assets/middle_section/svg_images/search.svg" 
+           class="xl:w-[20px] xl:h-[20px] xl:opacity-60">
+
+      <!-- Input -->
+      <input 
+        id="searchInput"
+        type="text" 
+        placeholder="Search..."
+        class="xl:w-[65px] xl:bg-transparent
+               xl:outline-none xl:border-none
+               xl:text-sm xl:text-gray-700 xl:font-medium
+               xl:placeholder:text-gray-300"
+      />
+
     </div>
+
+  </div>
+
 
     <!-- Courses -->
-    <div class="xl:grid xl:grid-cols-2 xl:gap-6 xl:mb-10">
+    <div class="xl:grid xl:grid-cols-2 xl:gap-8  xl:mt-[20px]">
       ${data.courses.map(course => `
         
-        <div class="xl:relative xl:p-5 xl:rounded-2xl xl:text-white 
-                    xl:bg-gradient-to-r ${course.color}">
-          
-          <h3 class="xl:text-lg xl:font-semibold">
-            ${course.title}
-          </h3>
+      <div class="xl:relative xl:p-3 xl:rounded-3xl xl:text-white 
+            xl:overflow-hidden xl:min-h-[150px]"
+     style="background: ${course.bgColor}; box-shadow: 0px 10px 30px 0px ${course.shadowColor};">
 
-          <p class="xl:text-sm xl:opacity-80">
-            ${course.lessons} lessons
-          </p>
+  <!-- Top-left overlay -->
+  <div class="xl:absolute xl:-top-10 xl:-left-12 xl:w-[120px] xl:h-[80px] 
+              xl:bg-[${course.overlayColor}] xl:rounded-full"></div>
 
-          <!-- Progress -->
-          <div class="xl:mt-4 xl:w-12 xl:h-12 xl:rounded-full 
-                      xl:border-4 xl:border-white 
-                      xl:flex xl:items-center xl:justify-center">
-            ${course.progress}%
-          </div>
+  <!-- Bottom-right overlay -->
+<div class="xl:absolute xl:-bottom-3 xl:-right-2 xl:z-0">
 
-          <!-- Icon -->
-          <img src="${course.icon}" 
-               class="xl:absolute xl:right-4 xl:bottom-3 xl:w-16">
+  <svg 
+    viewBox="0 0 136 80"
+    class="xl:w-[160px] xl:h-auto"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path 
+      d="M135.692 60C135.692 71.0457 126.738 80 115.692 80H0C5.38462 65 27.8772 35 74.7695 35C121.662 34.9999 134.923 11.6666 135.692 0V60Z" 
+      fill="${course.overlayColor}"
+      opacity="0.80"
+    />
+  </svg>
 
-        </div>
+</div>
+
+  <!-- Title -->
+<div class="xl:pt-[3px] xl:pl-[13px] xl:pb-[8px] xl:relative xl:z-10">
+  <h3 class="xl:text-[20px] xl:font-bold  ">
+    ${course.title}
+  </h3>
+
+  <!-- Lessons -->
+  <p class="xl:text-[12px] xl:font-semibold xl:opacity-90">
+    ${course.lessons} lessons
+  </p>
+
+  <!-- Progress Ring -->
+  <div class="xl:mt-[15px] xl:w-[50px] xl:h-[50px] xl:relative">
+
+  <svg class="xl:w-[50px] xl:h-[50px] xl:-rotate-90">
+    
+    <!-- Background ring -->
+<circle 
+  cx="25" cy="25" r="21"
+  stroke="${course.ringColor}"
+  stroke-width="4"
+  fill="none"
+/>
+
+    <!-- Progress ring -->
+    <circle 
+      cx="25" cy="25" r="21"
+      stroke="white"
+      stroke-width="4"
+      fill="none"
+      stroke-linecap="round"
+      stroke-dasharray="132"
+      stroke-dashoffset="132"
+      class="progress-ring xl:transition-all xl:duration-700"
+      data-progress="${course.progress}"
+    />
+
+  </svg>
+
+  <!-- Text -->
+  <div class="xl:absolute xl:inset-0 xl:flex xl:items-center xl:justify-center xl:text-[14px] xl:font-semibold">
+    ${course.progress}%
+  </div>
+
+</div>
+</div>
+  <!-- Icon -->
+  <img src="${course.icon}" 
+       class="xl:absolute xl:right-6 xl:bottom-4 ">
+
+</div>
 
       `).join("")}
-
-      <!-- Planning Header -->
-      <div class="xl:flex xl:flex-col w-full col-span-2">
-<div class="xl:flex xl:items-center xl:justify-between xl:mb-4 w-full">
-  <h2 class="xl:text-xl xl:font-semibold">Planning</h2>
-  <span class="xl:text-sm xl:text-blue-500">20 March 2020</span>
 </div>
+</div>
+      <!-- Planning Header -->
+      
+      <div class="xl:flex xl:flex-col xl:w-full xl:mt-10">
+<div class="xl:flex xl:items-center xl:justify-between xl:mb-5  xl:w-full">
 
+  <h2 class="xl:text-[24px] xl:font-bold">
+    Planning
+  </h2>
+
+  <!-- Trigger -->
+  <div 
+    id="calendarTrigger"
+    class="xl:flex xl:items-center xl:gap-2 xl:cursor-pointer xl:relative"
+  >
+
+    <img 
+      src="assets/middle_section/svg_images/calendar.svg" 
+      class="xl:w-[24px] xl:h-[24px] xl:opacity-70"
+    >
+
+    <span 
+      id="selectedDate"
+      class="xl:text-[18px] xl:text-[#369FFF] xl:font-semibold"
+    >
+      20 March 2020
+    </span>
+
+    <!-- Hidden Date Picker -->
+    <input 
+      type="date"
+      id="datePicker"
+      class="xl:absolute xl:top-8 xl:right-0 xl:opacity-0 xl:pointer-events-none"
+    >
+
+  </div>
+
+</div>
 <!-- Planning Grid -->
 <div id="planningContainer" 
-     class="xl:grid xl:grid-cols-2 xl:gap-4 w-full">
+     class="xl:grid xl:grid-cols-2 xl:gap-x-8 xl:gap-y-6 w-full">
 </div>
 </div>
-    </div>
+   
 
   `;
-        }
+      handleSearch()
+      animateProgressRings()
+      handleCalendar()
+    }
 
-        renderMain(dashboardData);
+    renderMain(dashboardData);
 
 
-        function renderPlanning(data) {
-            const container = document.getElementById("planningContainer");
+    function renderPlanning(data) {
+      const container = document.getElementById("planningContainer");
 
-            container.innerHTML = data.planning.map(item => `
+      container.innerHTML = data.planning.map(item => `
     
     <div class="xl:flex xl:items-center xl:justify-between 
-                xl:bg-white xl:p-4 xl:rounded-xl xl:shadow-sm">
+                xl:bg-[#F7F7F7] xl:p-4 xl:rounded-xl xl:shadow-sm ">
 
       <!-- Left -->
       <div class="xl:flex xl:items-center xl:gap-4">
 
         <!-- Icon Box -->
-        <div class="xl:w-10 xl:h-10 xl:rounded-lg 
+        <div class="xl:w-[50px] xl:h-[50px] xl:rounded-lg 
                     xl:flex xl:items-center xl:justify-center"
              style="background:${item.bg}20;">
           
-          <img src="${item.icon}" class="xl:w-5 xl:h-5">
+          <img src="${item.icon}" class="xl:w-[24px] xl:w-[24px]">
         </div>
 
         <!-- Text -->
         <div>
-          <p class="xl:text-sm xl:font-medium">
+          <p class="xl:text-[12px] xl:font-semibold xl:text-black">
             ${item.title}
           </p>
-          <p class="xl:text-xs xl:text-gray-400">
+          <p class="xl:text-[12px] xl:text-gray-400 xl:font-normal">
             ${item.time}
           </p>
         </div>
@@ -433,105 +613,213 @@
     </div>
 
   `).join("");
+    }
+
+    renderPlanning(dashboardData);
+
+
+    const rightPanel = document.getElementById("rightPanel");
+
+    function handleTopBar() {
+      const notifTrigger = document.getElementById("notificationTrigger");
+      const notifPanel = document.getElementById("notificationPanel");
+
+      const profileTrigger = document.getElementById("profileTrigger");
+      const profileDropdown = document.getElementById("profileDropdown");
+      const profileArrow = document.getElementById("profileArrow");
+
+      if (!notifTrigger || !profileTrigger) return;
+
+      // 🔔 Notification toggle
+      notifTrigger.onclick = (e) => {
+        e.stopPropagation();
+        notifPanel.classList.toggle("xl:hidden");
+        profileDropdown.classList.add("xl:hidden");
+        profileArrow.classList.remove("xl:rotate-180");
+      };
+
+      // 👤 Profile toggle
+      profileTrigger.onclick = (e) => {
+        e.stopPropagation();
+
+        const isOpen = !profileDropdown.classList.contains("xl:hidden");
+
+        profileDropdown.classList.toggle("xl:hidden");
+
+        // 🔥 Rotate arrow
+        if (isOpen) {
+          profileArrow.classList.remove("xl:rotate-180");
+        } else {
+          profileArrow.classList.add("xl:rotate-180");
         }
 
-        renderPlanning(dashboardData);
+        notifPanel.classList.add("xl:hidden");
+      };
 
+      //  Close on outside click
+      document.addEventListener("click", () => {
+        notifPanel.classList.add("xl:hidden");
+        profileDropdown.classList.add("xl:hidden");
+        profileArrow.classList.remove("xl:rotate-180");
+      });
+    }
+    function renderRightPanel(data) {
+      rightPanel.innerHTML = `
 
-        const rightPanel = document.getElementById("rightPanel");
+  <!-- Profile -->
+<div class="xl:flex xl:items-center xl:justify-between xl:mb-5  xl:relative">
 
-        function renderRightPanel(data) {
-            rightPanel.innerHTML = `
+  <!-- 🔔 Notification -->
+  <div class="xl:relative xl:cursor-pointer" id="notificationTrigger">
 
-    <!-- Profile -->
-    <div class="xl:flex xl:items-center xl:justify-between xl:mb-8">
+    <!-- Bell -->
+    <img src="assets/rightside_section/svg_images/bell.svg" 
+         class="xl:w-[22px] xl:h-[22px] xl:opacity-70">
 
-      <div class="xl:flex xl:items-center xl:gap-3">
-        <img src="${data.user.profileImage}" 
-             class="xl:w-10 xl:h-10 xl:rounded-full">
+    <!-- Red dot -->
+    <span class="xl:absolute xl:top-0 xl:right-0 xl:w-2 xl:h-2 xl:bg-red-500 xl:rounded-full"></span>
 
-        <div>
-          <p class="xl:text-sm xl:font-semibold">
-            ${data.user.name} Fernandes
-          </p>
-          <p class="xl:text-xs xl:text-gray-400">
-            ${data.user.plan}
-          </p>
-        </div>
+    <!-- Notification Panel -->
+    <div id="notificationPanel"
+         class="xl:hidden xl:absolute xl:top-8 xl:left-0 xl:w-[260px] xl:bg-white xl:shadow-lg xl:rounded-xl xl:p-4 xl:z-50">
+
+      <p class="xl:text-sm xl:font-semibold xl:mb-2">Notifications</p>
+
+      <div class="xl:text-xs xl:text-gray-500 xl:space-y-2">
+        <p>📘 New course available</p>
+        <p>✅ Task completed</p>
+        <p>🔥 Weekly streak updated</p>
       </div>
-
-      <span class="xl:text-gray-400 xl:cursor-pointer">⋮</span>
 
     </div>
 
+  </div>
 
-    <!-- Statistics -->
-    <div class="xl:mb-8">
 
-      <h2 class="xl:text-lg xl:font-semibold xl:mb-4">
-        Statistics
-      </h2>
+  <!-- 👤 Profile -->
+  <div id="profileTrigger"
+       class="xl:flex xl:items-center xl:gap-3 xl:cursor-pointer 
+              xl:bg-[#369FFF]/20 xl:p-2 xl:rounded-xl xl:relative">
 
-      <div class="xl:grid xl:grid-cols-2 xl:gap-4">
+    <!-- Image -->
+    <img src="${data.user.profileImage}" 
+         class="xl:w-10 xl:h-10 xl:rounded-xl xl:object-cover">
 
-        ${data.statistics.map(stat => `
-          
-          <div class="xl:bg-[#F5F7FB] xl:p-4 xl:rounded-xl">
+    <!-- Info -->
+    <div class="xl:pl-3">
+      <p class="xl:text-[14px] xl:font-semibold xl:pb-1 xl:mr-6">
+        ${data.user.name} ${data.user.last}
+      </p>
+      <p class="xl:text-[12px] xl:font-medium xl:text-[#369FFF]">
+        ${data.user.plan}
+      </p>
+    </div>
 
-            <p class="xl:text-lg xl:font-semibold">
+    <!-- Dropdown arrow -->
+    <img 
+  id="profileArrow"
+  src="assets/rightside_section/svg_images/downArrow.svg" 
+  class="xl:ml-2 xl:w-[14px] xl:h-[8px] xl:opacity-60 xl:transition-transform xl:duration-300"
+/>
+
+    <!-- Dropdown Menu -->
+    <div id="profileDropdown"
+         class="xl:hidden xl:absolute xl:top-14 xl:right-0 xl:w-[160px] 
+                xl:bg-white xl:shadow-lg xl:rounded-xl xl:p-2 xl:z-50">
+
+      <div class="xl:px-3 xl:py-2 xl:text-sm xl:hover:bg-gray-100 xl:rounded cursor-pointer">
+        View Profile
+      </div>
+
+      <div class="xl:px-3 xl:py-2 xl:text-sm xl:hover:bg-gray-100 xl:rounded cursor-pointer">
+        Logout
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  <!-- Statistics -->
+  <div class="xl-mt-5">
+
+    <h2 class="xl:text-[24px] xl:font-bold xl">
+      Statistics
+    </h2>
+
+    <div class="xl:grid xl:grid-cols-2 xl:gap-8 xl:mt-4">
+
+      ${data.statistics.map(stat => `
+        
+        <div class="xl:bg-[#369FFF]/20 xl:p-6 xl:rounded-2xl h-[186px]  xl:flex xl:flex-col xl:justify-between">
+
+          <!-- Label -->
+          <p class="xl:text-[16px] xl:w-[89px] xl:text-gray-400 xl:font-medium xl:leading-tight">
+            ${stat.label}
+          </p>
+
+          <!-- Bottom Row -->
+          <div class="xl:flex xl:items-center xl:justify-between xl:mt-6">
+
+            <!-- Blue line -->
+            <div class="xl:w-[4px] xl:h-[30px] xl:bg-[#369FFF] xl:rounded-full"></div>
+
+            <!-- Value -->
+            <p class="xl:text-[40px] xl:font-bold xl:text-[#1F6ED4]">
               ${stat.value}
             </p>
 
-            <p class="xl:text-xs xl:text-gray-400">
-              ${stat.label}
-            </p>
-
           </div>
 
-        `).join("")}
+        </div>
 
-      </div>
+      `).join("")}
 
     </div>
 
+  </div>
 
-    <!-- Weekly Activity -->
-    <div>
 
-      <h2 class="xl:text-lg xl:font-semibold xl:mb-4">
-        Weekly Activity
-      </h2>
+  <!-- Weekly Activity -->
+  <div class="xl:mt-10">
 
-      <div class="xl:flex xl:items-end xl:justify-between xl:h-40">
+    <h2 class="xl:text-[24px] xl:font-bold xl:mb-10">
+      Weekly Activity
+    </h2>
 
-        ${data.weeklyActivity.map(day => `
-          
-          <div class="xl:flex xl:flex-col xl:items-center xl:gap-2">
+    <div class="xl:flex xl:items-end xl:justify-between xl:h-[300px]">
 
-            <!-- Bar -->
-            <div class="xl:w-3 xl:rounded-full
-                        ${day.active ? 'xl:bg-blue-500' : 'xl:bg-blue-200'}"
-                 style="height:${day.value}px">
-            </div>
+      ${data.weeklyActivity.map(day => `
+        
+        <div class="xl:flex xl:flex-col xl:items-center xl:gap-2">
 
-            <!-- Label -->
-            <span class="xl:text-xs xl:text-gray-400">
-              ${day.day}
-            </span>
-
+          <!-- Bar -->
+          <div class="xl:w-[30px] xl:rounded-full
+                      ${day.active ? 'xl:bg-[#369FFF]' : 'xl:bg-[#DCE6F1]'}"
+               style="height:${day.value}px">
           </div>
 
-        `).join("")}
+          <!-- Label -->
+          <span class="xl:text-[14px] xl:text-black xl:font-medium">
+            ${day.day}
+          </span>
 
-      </div>
+        </div>
+
+      `).join("")}
 
     </div>
+
+  </div>
 
   `;
-        }
+      handleTopBar();
+    }
 
-        renderRightPanel(dashboardData);
-    </script>
+    renderRightPanel(dashboardData);
+  </script>
 </body>
 
 </html>
