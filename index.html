@@ -5,18 +5,19 @@
   <meta charset="UTF-8">
   <title>Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body class="bg-white">
 
-  <div class="flex flex-col xl:flex-row min-h-screen">
+  <div class="flex flex-col xl:flex-row min-h-screen w-full overflow-x-hidden ">
 
     <!-- Overlay (ADD HERE) -->
     <div id="sidebarOverlay" class="fixed inset-0 bg-black/30 hidden xl:hidden z-40">
     </div>
     <!-- Sidebar -->
     <aside id="sidebar" class="fixed xl:static top-0 left-0 z-50
-           w-[260px] h-full xl:h-[1024px]
+           w-[260px]  max-w-[80%] h-full xl:h-[1024px]
            bg-white px-[25px] pt-[30px]
            border-r
            transform -translate-x-full xl:translate-x-0
@@ -788,7 +789,7 @@ ${renderMainTopStrip(data)}
            class="w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 rounded-lg object-cover">
 
       <!-- Info -->
-      <div class="hidden sm:block">
+      <div class="sm:block">
         <p class="text-[12px] sm:text-[13px] xl:text-[14px] font-semibold leading-tight truncate max-w-[100px] xl:max-w-none">
           ${data.user.name} ${data.user.last}
         </p>
