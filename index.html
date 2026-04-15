@@ -9,19 +9,27 @@
 
 <body class="bg-white">
 
-  <div class="xl:flex xl:h-screen ">
+  <div class="flex flex-col xl:flex-row min-h-screen">
 
+    <!-- Overlay (ADD HERE) -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/30 hidden xl:hidden z-40">
+    </div>
     <!-- Sidebar -->
-    <aside id="sidebar" class="xl:w-[238px] xl:h-[1024px] xl:bg-white 
-         xl:px-[35px] xl:pt-[44px] xl:flex xl:flex-col xl:border-r">
+    <aside id="sidebar" class="fixed xl:static top-0 left-0 z-50
+           w-[260px] h-full xl:h-[1024px]
+           bg-white px-[25px] pt-[30px]
+           border-r
+           transform -translate-x-full xl:translate-x-0
+           transition-transform duration-300">
     </aside>
 
-    <!-- Middle Section -->
-    <main id="mainContent" class="xl:flex-1 xl:px-8 xl:py-8  bg-white  xl:border-r  xl:h-[1024px]">
+    <!-- Main -->
+    <main id="mainContent" class="flex-1 px-4 py-4 xl:px-8 xl:py-8 bg-white border-r">
     </main>
 
     <!-- Right Panel -->
-    <aside id="rightPanel" class="xl:w-[470px] max-w-[470px] xl:bg-white xl:px-6 xl:py-8 xl:border-l xl:h-[1024px]">
+    <aside id="rightPanel" class="w-full xl:w-[470px] xl:max-w-[470px] 
+           bg-white px-4 py-6 xl:px-6 xl:py-8 border-l">
     </aside>
 
   </div>
@@ -195,86 +203,12 @@
 
 
     const sidebar = document.getElementById("sidebar");
+    const menuItems = document.querySelectorAll(".menu-item");
+    const searchInput = document.getElementById("searchInput");
+    const mainContent = document.getElementById("mainContent");
+    const rightPanel = document.getElementById("rightPanel");
 
-    function renderSidebar(data) {
-      sidebar.innerHTML = `
-
-    <!-- Logo -->
-    <div class="xl:ml-[24px] xl:mb-[125px]">
-      <img src="assets/header_sidebar/png_image/logo.png" 
-           class="xl:w-[121px] xl:h-[37px] object-contain">
-    </div>
-
-    <!-- Menu -->
-    <nav class="xl:flex xl:flex-col xl:gap-8 xl:mb-[100px]">
-
-      ${data.menu.map((item) => `
-        
-        <div class="menu-item xl:flex xl:items-center xl:cursor-pointer"
-             data-id="${item.id}">
-          
-          <div class="icon xl:w-5 xl:h-5 xl:flex xl:items-center xl:justify-center">
-            ${item.svg}
-          </div>
-
-          <span class="menu-text xl:text-[15px] xl:font-medium xl:ml-[30px]">
-            ${item.label}
-          </span>
-
-          <span class="menu-dot xl:w-[6px] xl:h-[6px] xl:rounded-full 
-                       xl:ml-[20px] xl:hidden"></span>
-
-        </div>
-
-      `).join("")}
-
-    </nav>
-
-    <!-- Illustration -->
-    <div class="xl:flex xl:justify-center xl:mb-[100px]">
-      <img src=${data.sidebarImage.image}
-           class="xl:w-[158px] xl:h-[190px] object-contain">
-    </div>
-
-    <!-- Card -->
-    <div class="xl:bg-[#EAF4FF] xl:rounded-2xl 
-            xl:px-4 xl:py-4 xl:flex xl:flex-col xl:gap-4 
-            xl:w-[168px]">
-
-  <!-- Title -->
-  <p class="xl:text-[14px] xl:font-semibold xl:text-[#303030]">
-    Upgrade your plan
-  </p>
-
-  <!-- Row -->
-  <div class="xl:flex xl:items-center ">
-
-    <!-- Text -->
-    <p class="xl:text-[12px] xl:flex xl:items-center">
-      <span class="xl:text-gray-500">Go to</span>
-      <span class="xl:text-[#369FFF] xl:font-bold xl:ml-1">PRO</span>
-    </p>
-
-    <!-- Button -->
-    <button class="xl:w-8 xl:h-8 xl:flex xl:items-center xl:justify-center
-                   xl:border xl:border-[#369FFF] xl:rounded-xl
-                   xl:ml-[31px]">
-
-      <span class="xl:text-[#369FFF] xl:text-[12px] xl:font-semibold">
-        >>
-      </span>
-
-    </button>
-
-  </div>
-
-</div>
-
-  `;
-    }
-
-    renderSidebar(dashboardData);
-
+    // helper functions
     function setDefaultActiveState() {
       const menuItems = document.querySelectorAll(".menu-item");
 
@@ -289,18 +223,16 @@
 
           if (dot) {
             dot.style.background = "#369FFF";
-            dot.classList.remove("xl:hidden");
+            dot.classList.remove("hidden");
           }
         } else {
           if (text) text.style.color = "#BDBDBD";
           if (svg) svg.setAttribute("fill", "#BDBDBD");
 
-          if (dot) dot.classList.add("xl:hidden");
+          if (dot) dot.classList.add("hidden");
         }
       });
     }
-    setDefaultActiveState()
-    const menuItems = document.querySelectorAll(".menu-item");
 
     function handleMenuClick() {
       const nav = document.querySelector("#sidebar nav");
@@ -320,7 +252,7 @@
           if (text) text.style.color = "#BDBDBD";
           if (svg) svg.setAttribute("fill", "#BDBDBD");
 
-          if (dot) dot.classList.add("xl:hidden");
+          if (dot) dot.classList.add("hidden");
         });
 
         // Activate clicked
@@ -333,18 +265,11 @@
 
         if (dot) {
           dot.style.background = "#369FFF";
-          dot.classList.remove("xl:hidden");
+          dot.classList.remove("hidden");
         }
       });
     }
-    handleMenuClick()
 
-
-    const searchInput = document.getElementById("searchInput");
-
-
-
-    const mainContent = document.getElementById("mainContent");
     function handleSearch() {
       const searchInput = document.getElementById("searchInput");
 
@@ -356,6 +281,7 @@
         }
       };
     }
+
     function animateProgressRings() {
       const rings = document.querySelectorAll(".progress-ring");
 
@@ -370,6 +296,7 @@
         }, index * 150);
       });
     }
+
     function handleCalendar() {
       const trigger = document.getElementById("calendarTrigger");
       const input = document.getElementById("datePicker");
@@ -395,210 +322,226 @@
         display.textContent = formatted;
       };
     }
-    function renderMain(data) {
-      mainContent.innerHTML = `
 
-<div class="xl:mb-6 xl:w-full">
-<!-- Header -->
-  <!-- Top: Hello -->
-  <p class="xl:text-[18px] xl:text-[#369FFF] xl:mb-2 xl:mt-[18px]">
-    Hello 
-    <span class="xl:font-bold">${data.user.name}</span>
-  </p>
+    function renderMainTopStrip(data) {
+      return `
+  
+  <!-- Mobile Top Strip -->
+  <div class="flex xl:hidden items-center justify-between 
+              px-4 py-3 mb-4
+              bg-white shadow-sm rounded-xl">
 
-  <!-- Bottom: Title + Search -->
-  <div class="xl:flex xl:items-center xl:justify-between xl:mt-[30px] xl:w-full">
+    <!-- Logo -->
+    <div class="text-[18px] font-bold tracking-wide text-[#369FFF]">
+      SE • T
+    </div>
 
-    <!-- Left -->
-    <h1 class="xl:text-3xl xl:font-bold xl:text-gray-800">
-      My Courses
-    </h1>
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
 
-    <!-- Right (Search) -->
-    <div class="xl:flex xl:items-center xl:gap-3 xl:ml-auto">
+      <!-- Notification -->
+      <div class="p-2 rounded-lg hover:bg-gray-100 transition">
+        ${renderRightTop(data, {
+        showNotification: true,
+        showProfile: false,
+        wrapperClass: "flex items-center",
+        idPrefix: "mobile"
+      })}
+      </div>
 
+      <!-- Hamburger -->
+      <button id="menuToggle" 
+              class="p-2 rounded-lg hover:bg-gray-100 transition active:scale-95">
+
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             class="w-6 h-6 text-gray-700"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+
+      </button>
+
+    </div>
+
+  </div>
+  `;
+    }
+
+    function handleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const toggle = document.getElementById("menuToggle");
+      const overlay = document.getElementById("sidebarOverlay");
+
+      if (!sidebar || !toggle || !overlay) return;
+
+      toggle.onclick = () => {
+        sidebar.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      };
+
+      overlay.onclick = () => {
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      };
+    }
+
+    function handleTopBar(prefix = "desktop") {
+      const notifTrigger = document.getElementById(`${prefix}-notificationTrigger`);
+      const notifPanel = document.getElementById(`${prefix}-notificationPanel`);
+
+      const profileTrigger = document.getElementById(`${prefix}-profileTrigger`);
+      const profileDropdown = document.getElementById(`${prefix}-profileDropdown`);
+      const profileArrow = document.getElementById(`${prefix}-profileArrow`);
+
+
+
+      if (notifTrigger && notifPanel) {
+        notifTrigger.onclick = (e) => {
+          e.stopPropagation();
+          notifPanel.classList.toggle("hidden");
+          profileDropdown?.classList.add("hidden");
+        };
+      }
+
+      if (profileTrigger && profileDropdown) {
+        profileTrigger.onclick = (e) => {
+          e.stopPropagation();
+          profileDropdown.classList.toggle("hidden");
+          profileArrow?.classList.toggle("rotate-180");
+          notifPanel?.classList.add("hidden");
+        };
+      }
+
+      document.addEventListener("click", () => {
+        notifPanel?.classList.add("hidden");
+        profileDropdown?.classList.add("hidden");
+        profileArrow?.classList.remove("rotate-180");
+      });
+    }
+
+    // main functions
+    function renderSidebar(data) {
+      sidebar.innerHTML = `
+
+  <!-- Logo -->
+  <div class="ml-2 mt-4 mb-10 sm:ml-4 sm:mb-12 lg:ml-4 lg:mb-16 xl:ml-[24px] xl:mb-[125px]">
+    <img src="assets/header_sidebar/png_image/logo.png" 
+         class="w-[90px] sm:w-[100px] lg:w-[110px] xl:w-[121px] object-contain">
+  </div>
+
+<!-- Profile -->
+
+  <div class="mb-6 sm:mb-8 xl:hidden">
+    ${renderRightTop(data, {
+        showNotification: false,
+        showProfile: true,
+        wrapperClass: "flex items-center w-full",
+        idPrefix: "sidebar"
+      })}
+  </div>
+<!--Menu -->
+  <nav class="flex flex-col gap-5 sm:gap-6 lg:gap-6 xl:gap-8 mb-10 sm:mb-12 lg:mb-14 xl:mb-[100px]">
+
+  ${data.menu.map((item) => `
+    
+    <div class="menu-item flex items-center cursor-pointer"
+         data-id="${item.id}">
+      
       <!-- Icon -->
-      <img src="assets/middle_section/svg_images/search.svg" 
-           class="xl:w-[20px] xl:h-[20px] xl:opacity-60">
+      <div class="icon w-5 h-5 flex items-center justify-center">
+        ${item.svg}
+      </div>
 
-      <!-- Input -->
-      <input 
-        id="searchInput"
-        type="text" 
-        placeholder="Search..."
-        class="xl:w-[65px] xl:bg-transparent
-               xl:outline-none xl:border-none
-               xl:text-sm xl:text-gray-700 xl:font-medium
-               xl:placeholder:text-gray-300"
-      />
+      <!-- Text -->
+      <span class="menu-text text-[13px] sm:text-[14px] xl:text-[15px] 
+                   font-medium ml-4 sm:ml-5 xl:ml-[30px] 
+                   text-[#BDBDBD] transition">
+        ${item.label}
+      </span>
+
+      <!-- Dot -->
+      <span class="menu-dot w-[5px] h-[5px] sm:w-[6px] sm:h-[6px] 
+                   rounded-full ml-3 sm:ml-4 xl:ml-[20px] 
+                   hidden ">
+      </span>
+
+    </div>
+
+  `).join("")}
+
+</nav>
+
+  <!-- Illustration -->
+  <div class="hidden sm:flex justify-center mb-10 sm:mb-12 lg:mb-14 xl:mb-[100px]">
+    <img src="${data.sidebarImage.image}"
+         class="w-[120px] sm:w-[130px] lg:w-[140px] xl:w-[158px] object-contain">
+  </div>
+
+  <!-- Card -->
+  <div class="bg-[#EAF4FF] rounded-xl sm:rounded-2xl 
+              px-3 py-3 sm:px-4 sm:py-4 
+              flex flex-col gap-3 sm:gap-4 
+              w-full max-w-[160px] sm:max-w-[170px] xl:w-[168px]">
+
+    <!-- Title -->
+    <p class="text-[12px] sm:text-[13px] xl:text-[14px] font-semibold text-[#303030]">
+      Upgrade your plan
+    </p>
+
+    <!-- Row -->
+    <div class="flex items-center justify-between">
+
+      <!-- Text -->
+      <p class="text-[11px] sm:text-[12px] flex items-center">
+        <span class="text-gray-500">Go to</span>
+        <span class="text-[#369FFF] font-bold ml-1">PRO</span>
+      </p>
+
+      <!-- Button -->
+      <button class="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center
+                     border border-[#369FFF] rounded-lg sm:rounded-xl
+                     hover:bg-[#369FFF]/10 transition">
+
+        <span class="text-[#369FFF] text-[11px] sm:text-[12px] font-semibold">
+          >>
+        </span>
+
+      </button>
 
     </div>
 
   </div>
 
-
-    <!-- Courses -->
-    <div class="xl:grid xl:grid-cols-2 xl:gap-8  xl:mt-[20px]">
-      ${data.courses.map(course => `
-        
-      <div class="xl:relative xl:p-3 xl:rounded-3xl xl:text-white 
-            xl:overflow-hidden xl:min-h-[150px]"
-     style="background: ${course.bgColor}; box-shadow: 0px 10px 30px 0px ${course.shadowColor};">
-
-  <!-- Top-left overlay -->
-  <div class="xl:absolute xl:-top-10 xl:-left-12 xl:w-[120px] xl:h-[80px] 
-              xl:bg-[${course.overlayColor}] xl:rounded-full"></div>
-
-  <!-- Bottom-right overlay -->
-<div class="xl:absolute xl:-bottom-3 xl:-right-2 xl:z-0">
-
-  <svg 
-    viewBox="0 0 136 80"
-    class="xl:w-[160px] xl:h-auto"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path 
-      d="M135.692 60C135.692 71.0457 126.738 80 115.692 80H0C5.38462 65 27.8772 35 74.7695 35C121.662 34.9999 134.923 11.6666 135.692 0V60Z" 
-      fill="${course.overlayColor}"
-      opacity="0.80"
-    />
-  </svg>
-
-</div>
-
-  <!-- Title -->
-<div class="xl:pt-[3px] xl:pl-[13px] xl:pb-[8px] xl:relative xl:z-10">
-  <h3 class="xl:text-[20px] xl:font-bold  ">
-    ${course.title}
-  </h3>
-
-  <!-- Lessons -->
-  <p class="xl:text-[12px] xl:font-semibold xl:opacity-90">
-    ${course.lessons} lessons
-  </p>
-
-  <!-- Progress Ring -->
-  <div class="xl:mt-[15px] xl:w-[50px] xl:h-[50px] xl:relative">
-
-  <svg class="xl:w-[50px] xl:h-[50px] xl:-rotate-90">
-    
-    <!-- Background ring -->
-<circle 
-  cx="25" cy="25" r="21"
-  stroke="${course.ringColor}"
-  stroke-width="4"
-  fill="none"
-/>
-
-    <!-- Progress ring -->
-    <circle 
-      cx="25" cy="25" r="21"
-      stroke="white"
-      stroke-width="4"
-      fill="none"
-      stroke-linecap="round"
-      stroke-dasharray="132"
-      stroke-dashoffset="132"
-      class="progress-ring xl:transition-all xl:duration-700"
-      data-progress="${course.progress}"
-    />
-
-  </svg>
-
-  <!-- Text -->
-  <div class="xl:absolute xl:inset-0 xl:flex xl:items-center xl:justify-center xl:text-[14px] xl:font-semibold">
-    ${course.progress}%
-  </div>
-
-</div>
-</div>
-  <!-- Icon -->
-  <img src="${course.icon}" 
-       class="xl:absolute xl:right-6 xl:bottom-4 ">
-
-</div>
-
-      `).join("")}
-</div>
-</div>
-      <!-- Planning Header -->
-      
-      <div class="xl:flex xl:flex-col xl:w-full xl:mt-10">
-<div class="xl:flex xl:items-center xl:justify-between xl:mb-5  xl:w-full">
-
-  <h2 class="xl:text-[24px] xl:font-bold">
-    Planning
-  </h2>
-
-  <!-- Trigger -->
-  <div 
-    id="calendarTrigger"
-    class="xl:flex xl:items-center xl:gap-2 xl:cursor-pointer xl:relative"
-  >
-
-    <img 
-      src="assets/middle_section/svg_images/calendar.svg" 
-      class="xl:w-[24px] xl:h-[24px] xl:opacity-70"
-    >
-
-    <span 
-      id="selectedDate"
-      class="xl:text-[18px] xl:text-[#369FFF] xl:font-semibold"
-    >
-      20 March 2020
-    </span>
-
-    <!-- Hidden Date Picker -->
-    <input 
-      type="date"
-      id="datePicker"
-      class="xl:absolute xl:top-8 xl:right-0 xl:opacity-0 xl:pointer-events-none"
-    >
-
-  </div>
-
-</div>
-<!-- Planning Grid -->
-<div id="planningContainer" 
-     class="xl:grid xl:grid-cols-2 xl:gap-x-8 xl:gap-y-6 w-full">
-</div>
-</div>
-   
-
   `;
-      handleSearch()
-      animateProgressRings()
-      handleCalendar()
     }
-
-    renderMain(dashboardData);
-
 
     function renderPlanning(data) {
       const container = document.getElementById("planningContainer");
 
       container.innerHTML = data.planning.map(item => `
     
-    <div class="xl:flex xl:items-center xl:justify-between 
-                xl:bg-[#F7F7F7] xl:p-4 xl:rounded-xl xl:shadow-sm ">
+    <div class="flex items-center justify-between 
+                bg-[#F7F7F7] p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-sm">
 
       <!-- Left -->
-      <div class="xl:flex xl:items-center xl:gap-4">
+      <div class="flex items-center gap-3 sm:gap-4">
 
         <!-- Icon Box -->
-        <div class="xl:w-[50px] xl:h-[50px] xl:rounded-lg 
-                    xl:flex xl:items-center xl:justify-center"
+        <div class="w-[40px] h-[40px] sm:w-[45px] sm:h-[45px] xl:w-[50px] xl:h-[50px] 
+                    rounded-lg flex items-center justify-center"
              style="background:${item.bg}20;">
           
-          <img src="${item.icon}" class="xl:w-[24px] xl:w-[24px]">
+          <img src="${item.icon}" 
+               class="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] xl:w-[24px] xl:h-[24px]">
         </div>
 
         <!-- Text -->
         <div>
-          <p class="xl:text-[12px] xl:font-semibold xl:text-black">
+          <p class="text-[13px] sm:text-[14px] xl:text-[12px] font-semibold text-black">
             ${item.title}
           </p>
-          <p class="xl:text-[12px] xl:text-gray-400 xl:font-normal">
+          <p class="text-[11px] sm:text-[12px] text-gray-400 font-normal">
             ${item.time}
           </p>
         </div>
@@ -606,7 +549,7 @@
       </div>
 
       <!-- Dots -->
-      <div class="xl:text-gray-400 xl:cursor-pointer">
+      <div class="text-gray-400 cursor-pointer text-lg sm:text-xl xl:text-base">
         ⋮
       </div>
 
@@ -614,160 +557,318 @@
 
   `).join("");
     }
+    function renderMain(data) {
+      mainContent.innerHTML = `
+${renderMainTopStrip(data)}
+<div class="mb-4 sm:mb-6 w-full">
 
-    renderPlanning(dashboardData);
+  <!-- Header -->
+  <p class="text-[14px] sm:text-[16px] xl:text-[18px] text-[#369FFF] mb-1 sm:mb-2 mt-2 sm:mt-4">
+    Hello 
+    <span class="font-bold">${data.user.name}</span>
+  </p>
 
+  <!-- Title + Search -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mt-4 sm:mt-6 xl:mt-[30px] w-full">
 
-    const rightPanel = document.getElementById("rightPanel");
+    <!-- Title -->
+    <h1 class="text-[20px] sm:text-[24px] xl:text-3xl font-bold text-gray-800">
+      My Courses
+    </h1>
 
-    function handleTopBar() {
-      const notifTrigger = document.getElementById("notificationTrigger");
-      const notifPanel = document.getElementById("notificationPanel");
+    <!-- Search -->
+    <div class="flex items-center gap-2  px-3 py-2 rounded-lg w-full sm:w-auto">
 
-      const profileTrigger = document.getElementById("profileTrigger");
-      const profileDropdown = document.getElementById("profileDropdown");
-      const profileArrow = document.getElementById("profileArrow");
+      <img src="assets/middle_section/svg_images/search.svg" 
+           class="w-[16px] h-[16px] opacity-60">
 
-      if (!notifTrigger || !profileTrigger) return;
-
-      // 🔔 Notification toggle
-      notifTrigger.onclick = (e) => {
-        e.stopPropagation();
-        notifPanel.classList.toggle("xl:hidden");
-        profileDropdown.classList.add("xl:hidden");
-        profileArrow.classList.remove("xl:rotate-180");
-      };
-
-      // 👤 Profile toggle
-      profileTrigger.onclick = (e) => {
-        e.stopPropagation();
-
-        const isOpen = !profileDropdown.classList.contains("xl:hidden");
-
-        profileDropdown.classList.toggle("xl:hidden");
-
-        // 🔥 Rotate arrow
-        if (isOpen) {
-          profileArrow.classList.remove("xl:rotate-180");
-        } else {
-          profileArrow.classList.add("xl:rotate-180");
-        }
-
-        notifPanel.classList.add("xl:hidden");
-      };
-
-      //  Close on outside click
-      document.addEventListener("click", () => {
-        notifPanel.classList.add("xl:hidden");
-        profileDropdown.classList.add("xl:hidden");
-        profileArrow.classList.remove("xl:rotate-180");
-      });
-    }
-    function renderRightPanel(data) {
-      rightPanel.innerHTML = `
-
-  <!-- Profile -->
-<div class="xl:flex xl:items-center xl:justify-between xl:mb-5  xl:relative">
-
-  <!-- 🔔 Notification -->
-  <div class="xl:relative xl:cursor-pointer" id="notificationTrigger">
-
-    <!-- Bell -->
-    <img src="assets/rightside_section/svg_images/bell.svg" 
-         class="xl:w-[22px] xl:h-[22px] xl:opacity-70">
-
-    <!-- Red dot -->
-    <span class="xl:absolute xl:top-0 xl:right-0 xl:w-2 xl:h-2 xl:bg-red-500 xl:rounded-full"></span>
-
-    <!-- Notification Panel -->
-    <div id="notificationPanel"
-         class="xl:hidden xl:absolute xl:top-8 xl:left-0 xl:w-[260px] xl:bg-white xl:shadow-lg xl:rounded-xl xl:p-4 xl:z-50">
-
-      <p class="xl:text-sm xl:font-semibold xl:mb-2">Notifications</p>
-
-      <div class="xl:text-xs xl:text-gray-500 xl:space-y-2">
-        <p>📘 New course available</p>
-        <p>✅ Task completed</p>
-        <p>🔥 Weekly streak updated</p>
-      </div>
+      <input 
+        id="searchInput"
+        type="text" 
+        placeholder="Search..."
+        class="w-full sm:w-[140px] xl:w-[65px] bg-transparent
+               outline-none border-none
+               text-sm text-gray-700 font-medium
+               placeholder:text-gray-300"
+      />
 
     </div>
 
   </div>
 
+  <!-- Courses Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 xl:gap-8 mt-4 sm:mt-6 xl:mt-[20px]">
 
-  <!-- 👤 Profile -->
-  <div id="profileTrigger"
-       class="xl:flex xl:items-center xl:gap-3 xl:cursor-pointer 
-              xl:bg-[#369FFF]/20 xl:p-2 xl:rounded-xl xl:relative">
+    ${data.courses.map(course => `
+      
+      <div class="relative p-4 sm:p-4 xl:p-3 rounded-2xl xl:rounded-3xl text-white 
+                  overflow-hidden min-h-[140px] sm:min-h-[150px]"
+           style="background: ${course.bgColor}; box-shadow: 0px 10px 30px 0px ${course.shadowColor};">
 
-    <!-- Image -->
-    <img src="${data.user.profileImage}" 
-         class="xl:w-10 xl:h-10 xl:rounded-xl xl:object-cover">
+        <!-- Top-left overlay -->
+        <div class="absolute -top-8 -left-10 sm:-top-10 sm:-left-12 
+                    w-[100px] h-[70px] sm:w-[120px] sm:h-[80px] 
+                    rounded-full opacity-30"
+             style="background:${course.overlayColor}">
+        </div>
 
-    <!-- Info -->
-    <div class="xl:pl-3">
-      <p class="xl:text-[14px] xl:font-semibold xl:pb-1 xl:mr-6">
-        ${data.user.name} ${data.user.last}
-      </p>
-      <p class="xl:text-[12px] xl:font-medium xl:text-[#369FFF]">
-        ${data.user.plan}
-      </p>
-    </div>
+        <!-- Bottom-right overlay -->
+        <div class="absolute -bottom-2 -right-2 z-0">
 
-    <!-- Dropdown arrow -->
-    <img 
-  id="profileArrow"
-  src="assets/rightside_section/svg_images/downArrow.svg" 
-  class="xl:ml-2 xl:w-[14px] xl:h-[8px] xl:opacity-60 xl:transition-transform xl:duration-300"
-/>
+          <svg viewBox="0 0 136 80"
+               class="w-[120px] sm:w-[140px] xl:w-[160px] h-auto">
+            <path 
+              d="M135.692 60C135.692 71.0457 126.738 80 115.692 80H0C5.38462 65 27.8772 35 74.7695 35C121.662 34.9999 134.923 11.6666 135.692 0V60Z" 
+              fill="${course.overlayColor}"
+              opacity="0.6"
+            />
+          </svg>
 
-    <!-- Dropdown Menu -->
-    <div id="profileDropdown"
-         class="xl:hidden xl:absolute xl:top-14 xl:right-0 xl:w-[160px] 
-                xl:bg-white xl:shadow-lg xl:rounded-xl xl:p-2 xl:z-50">
+        </div>
 
-      <div class="xl:px-3 xl:py-2 xl:text-sm xl:hover:bg-gray-100 xl:rounded cursor-pointer">
-        View Profile
+        <!-- Content -->
+        <div class="relative z-10">
+
+          <h3 class="text-[16px] sm:text-[18px] xl:text-[20px] font-bold">
+            ${course.title}
+          </h3>
+
+          <p class="text-[11px] sm:text-[12px] font-semibold opacity-90">
+            ${course.lessons} lessons
+          </p>
+
+          <!-- Progress -->
+          <div class="mt-3 sm:mt-[15px] w-[45px] h-[45px] sm:w-[50px] sm:h-[50px] relative">
+
+            <svg class="w-full h-full -rotate-90">
+              
+              <circle 
+                cx="25" cy="25" r="21"
+                stroke="${course.ringColor}"
+                stroke-width="4"
+                fill="none"
+              />
+
+              <circle 
+                cx="25" cy="25" r="21"
+                stroke="white"
+                stroke-width="4"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="132"
+                stroke-dashoffset="132"
+                class="progress-ring transition-all duration-700"
+                data-progress="${course.progress}"
+              />
+
+            </svg>
+
+            <div class="absolute inset-0 flex items-center justify-center text-[12px] sm:text-[14px] font-semibold">
+              ${course.progress}%
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Icon -->
+        <img src="${course.icon}" 
+             class="absolute right-4 bottom-3 sm:right-5 sm:bottom-4 xl:right-6 xl:bottom-4 w-[40px] sm:w-[50px] xl:w-auto">
+
       </div>
 
-      <div class="xl:px-3 xl:py-2 xl:text-sm xl:hover:bg-gray-100 xl:rounded cursor-pointer">
-        Logout
-      </div>
-
-    </div>
+    `).join("")}
 
   </div>
 
 </div>
+      <!-- Planning Section -->
+<div class="flex flex-col w-full mt-6 sm:mt-8 xl:mt-10">
 
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4 sm:mb-5 w-full">
+
+    <!-- Title -->
+    <h2 class="text-[18px] sm:text-[20px] xl:text-[24px] font-bold">
+      Planning
+    </h2>
+
+    <!-- Calendar Trigger -->
+    <div 
+      id="calendarTrigger"
+      class="flex items-center gap-2 cursor-pointer relative 
+              px-3 py-2 rounded-lg w-fit">
+
+      <!-- Icon -->
+      <img 
+        src="assets/middle_section/svg_images/calendar.svg" 
+        class="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] xl:w-[24px] xl:h-[24px] opacity-70"
+      >
+
+      <!-- Date -->
+      <span 
+        id="selectedDate"
+        class="text-[13px] sm:text-[14px] xl:text-[18px] text-[#369FFF] font-semibold"
+      >
+        20 March 2020
+      </span>
+
+      <!-- Hidden Date Picker -->
+      <input 
+        type="date"
+        id="datePicker"
+        class="absolute top-10 right-0 opacity-0 pointer-events-none"
+      >
+
+    </div>
+
+  </div>
+
+  <!-- Planning Grid -->
+  <div id="planningContainer" 
+       class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 xl:gap-x-8 xl:gap-y-6 w-full">
+  </div>
+
+</div>
+  `;
+    }
+
+    function renderRightTop(data, options = {}) {
+      const {
+        showNotification = true,
+        showProfile = true,
+        wrapperClass = "hidden xl:flex items-center justify-between mb-5 relative",
+        idPrefix = "desktop"
+      } = options;
+
+      return `
+  
+  <div class="${wrapperClass} gap-2 sm:gap-3">
+
+    ${showNotification ? `
+    <!-- 🔔 Notification -->
+    <div class="relative" id="${idPrefix}-notificationTrigger">
+
+      <!-- Button -->
+      <div class="p-2 sm:p-2.5 rounded-lg hover:bg-gray-100 transition cursor-pointer">
+        <img src="assets/rightside_section/svg_images/bell.svg" 
+             class="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] xl:w-[22px] xl:h-[22px] opacity-70">
+      </div>
+
+      <!-- Red Dot -->
+      <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+
+      <!-- Panel -->
+      <div id="${idPrefix}-notificationPanel"
+           class="hidden absolute right-0 mt-2 w-[220px] sm:w-[240px] xl:w-[260px] 
+                  bg-white shadow-lg rounded-xl p-3 sm:p-4 z-50">
+
+        <p class="text-sm font-semibold mb-2">Notifications</p>
+
+        <div class="text-xs text-gray-500 space-y-2">
+          <p>📘 New course available</p>
+          <p>✅ Task completed</p>
+          <p>🔥 Weekly streak updated</p>
+        </div>
+
+      </div>
+
+    </div>
+    ` : ""}
+
+    ${showProfile ? `
+    <!-- 👤 Profile -->
+    <div id="${idPrefix}-profileTrigger"
+         class="flex items-center gap-2 sm:gap-3 cursor-pointer 
+                bg-[#369FFF]/20 px-2 py-1.5 sm:px-3 sm:py-2 
+                rounded-lg sm:rounded-xl relative hover:bg-[#369FFF]/30 transition">
+
+      <!-- Image -->
+      <img src="${data.user.profileImage}" 
+           class="w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 rounded-lg object-cover">
+
+      <!-- Info -->
+      <div class="hidden sm:block">
+        <p class="text-[12px] sm:text-[13px] xl:text-[14px] font-semibold leading-tight truncate max-w-[100px] xl:max-w-none">
+          ${data.user.name} ${data.user.last}
+        </p>
+        <p class="text-[10px] sm:text-[11px] xl:text-[12px] font-medium text-[#369FFF]">
+          ${data.user.plan}
+        </p>
+      </div>
+
+      <!-- Arrow -->
+      <img 
+        id="${idPrefix}-profileArrow"
+        src="assets/rightside_section/svg_images/downArrow.svg" 
+        class="w-[10px] h-[6px] sm:w-[12px] sm:h-[7px] xl:w-[14px] xl:h-[8px] 
+               opacity-60 transition-transform duration-300"
+      />
+
+      <!-- Dropdown -->
+      <div id="${idPrefix}-profileDropdown"
+           class="hidden absolute right-0 -bottom-20 mt-2 w-[140px] sm:w-[150px] xl:w-[160px] 
+                  bg-white shadow-lg rounded-xl p-2 z-50">
+
+        <div class="px-3 py-2 text-sm hover:bg-gray-100 rounded cursor-pointer">
+          View Profile
+        </div>
+
+        <div class="px-3 py-2 text-sm hover:bg-gray-100 rounded cursor-pointer">
+          Logout
+        </div>
+
+      </div>
+
+    </div>
+    ` : ""}
+
+  </div>
+  `;
+    }
+
+    function renderRightPanel(data) {
+      rightPanel.innerHTML = `
+
+  <!-- Top Right (Desktop Only) -->
+  ${renderRightTop(data, {
+        showNotification: true,
+        showProfile: true,
+        idPrefix: "desktop"
+      })}
 
   <!-- Statistics -->
-  <div class="xl-mt-5">
+  <div class="mt-6 sm:mt-8 xl:mt-5">
 
-    <h2 class="xl:text-[24px] xl:font-bold xl">
+    <h2 class="text-[18px] sm:text-[20px] xl:text-[24px] font-bold">
       Statistics
     </h2>
 
-    <div class="xl:grid xl:grid-cols-2 xl:gap-8 xl:mt-4">
+    <div class="grid grid-cols-2 gap-3 sm:gap-4 xl:gap-8 mt-4">
 
       ${data.statistics.map(stat => `
         
-        <div class="xl:bg-[#369FFF]/20 xl:p-6 xl:rounded-2xl h-[186px]  xl:flex xl:flex-col xl:justify-between">
+        <div class="bg-[#369FFF]/20 p-3 sm:p-4 xl:p-6 
+                    rounded-xl xl:rounded-2xl 
+                    flex flex-col justify-between 
+                    min-h-[120px] sm:min-h-[140px] xl:h-[186px]">
 
           <!-- Label -->
-          <p class="xl:text-[16px] xl:w-[89px] xl:text-gray-400 xl:font-medium xl:leading-tight">
+          <p class="text-[12px] sm:text-[13px] xl:text-[16px] 
+                    text-gray-400 font-medium leading-tight">
             ${stat.label}
           </p>
 
-          <!-- Bottom Row -->
-          <div class="xl:flex xl:items-center xl:justify-between xl:mt-6">
+          <!-- Bottom -->
+          <div class="flex items-center justify-between mt-3 sm:mt-4 xl:mt-6">
 
-            <!-- Blue line -->
-            <div class="xl:w-[4px] xl:h-[30px] xl:bg-[#369FFF] xl:rounded-full"></div>
+            <!-- Line -->
+            <div class="w-[3px] sm:w-[4px] h-[20px] sm:h-[25px] xl:h-[30px] 
+                        bg-[#369FFF] rounded-full"></div>
 
             <!-- Value -->
-            <p class="xl:text-[40px] xl:font-bold xl:text-[#1F6ED4]">
+            <p class="text-[20px] sm:text-[28px] xl:text-[40px] 
+                      font-bold text-[#1F6ED4]">
               ${stat.value}
             </p>
 
@@ -783,42 +884,72 @@
 
 
   <!-- Weekly Activity -->
-  <div class="xl:mt-10">
+  <div class="mt-8 sm:mt-10">
 
-    <h2 class="xl:text-[24px] xl:font-bold xl:mb-10">
+    <h2 class="text-[18px] sm:text-[20px] xl:text-[24px] 
+               font-bold mb-6 sm:mb-8 xl:mb-10">
       Weekly Activity
     </h2>
 
-    <div class="xl:flex xl:items-end xl:justify-between xl:h-[300px]">
+    <!-- Scroll wrapper for mobile -->
+    <div class="overflow-x-auto">
 
-      ${data.weeklyActivity.map(day => `
-        
-        <div class="xl:flex xl:flex-col xl:items-center xl:gap-2">
+      <div class="flex items-end justify-between 
+                  min-w-[300px] sm:min-w-0 
+                  h-[300px]">
 
-          <!-- Bar -->
-          <div class="xl:w-[30px] xl:rounded-full
-                      ${day.active ? 'xl:bg-[#369FFF]' : 'xl:bg-[#DCE6F1]'}"
-               style="height:${day.value}px">
+        ${data.weeklyActivity.map(day => `
+          
+          <div class="flex flex-col items-center gap-1 sm:gap-2">
+
+            <!-- Bar -->
+            <div class="w-[18px] sm:w-[22px] xl:w-[30px] rounded-full
+                        ${day.active ? 'bg-[#369FFF]' : 'bg-[#DCE6F1]'}"
+                 style="height:${day.value}px">
+            </div>
+
+            <!-- Label -->
+            <span class="text-[11px] sm:text-[12px] xl:text-[14px] 
+                         text-black font-medium">
+              ${day.day}
+            </span>
+
           </div>
 
-          <!-- Label -->
-          <span class="xl:text-[14px] xl:text-black xl:font-medium">
-            ${day.day}
-          </span>
+        `).join("")}
 
-        </div>
-
-      `).join("")}
+      </div>
 
     </div>
 
   </div>
 
   `;
-      handleTopBar();
     }
 
-    renderRightPanel(dashboardData);
+    // function callings
+    function initUI() {
+      handleMenuClick();        // sidebar menu
+      setDefaultActiveState();  // sidebar default
+
+      handleSearch();           // search
+      handleCalendar();         // calendar
+      animateProgressRings();   // rings
+
+      handleTopBar("desktop");  // right panel
+      handleTopBar("mobile");   // mobile strip
+      handleTopBar("sidebar");  //sidebar
+      handleSidebar();          // hamburger
+    }
+    function renderApp(data) {
+      renderSidebar(data);
+      renderMain(data);
+      renderPlanning(data);
+      renderRightPanel(data);
+
+      initUI(); // 🔥 ALL EVENTS HERE
+    }
+    renderApp(dashboardData);
   </script>
 </body>
 
