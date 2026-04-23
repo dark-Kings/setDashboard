@@ -197,13 +197,13 @@
         { label: "Tasks Finished", value: "05" },
       ],
       weeklyActivity: [
-        { day: "Mon", value: 210, active: false },
-        { day: "Tue", value: 188, active: false },
-        { day: "Wed", value: 132, active: false },
-        { day: "Thu", value: 276, active: true },
-        { day: "Fri", value: 167, active: false },
-        { day: "Sat", value: 231, active: false },
-        { day: "Sun", value: 199, active: false },
+        { day: "Mon", value: 8, active: false },
+        { day: "Tue", value: 7, active: false },
+        { day: "Wed", value: 4, active: false },
+        { day: "Thu", value: 10, active: true },
+        { day: "Fri", value: 5, active: false },
+        { day: "Sat", value: 9, active: false },
+        { day: "Sun", value: 8, active: false },
       ],
     };
 
@@ -288,19 +288,46 @@
       };
     }
 
-    function animateProgressRings() {
-      const rings = document.querySelectorAll(".progress-ring");
+    function initializeCourseProgress() {
+      const cards = document.querySelectorAll(".course-card");
 
-      rings.forEach((ring, index) => {
-        const progress = ring.getAttribute("data-progress");
-        const circumference = 132;
-
-        const offset = circumference - (progress / 100) * circumference;
-
+      cards.forEach((card, index) => {
         setTimeout(() => {
-          ring.style.strokeDashoffset = -offset;
-        }, index * 150);
+          updateSingleCard(card);
+        }, index * 120);
       });
+    }
+
+    function watchCourseProgress() {
+      const cards = document.querySelectorAll(".course-card");
+
+      cards.forEach(card => {
+        const observer = new MutationObserver(() => {
+          updateSingleCard(card);
+        });
+
+        observer.observe(card, {
+          attributes: true,
+          attributeFilter: ["data-progress"]
+        });
+      });
+    }
+    function updateSingleCard(card) {
+      const progress = parseInt(card.dataset.progress);
+
+      const ring = card.querySelector(".progress-ring");
+      const text = card.querySelector(".progress-text");
+
+      if (!ring) return;
+
+      const circumference = 132;
+      const offset = circumference - (progress / 100) * circumference;
+
+      ring.style.strokeDashoffset = offset;
+
+      if (text) {
+        text.textContent = `${progress}%`;
+      }
     }
 
     function handleCalendar() {
@@ -425,6 +452,54 @@
         profileArrow?.classList.remove("rotate-180");
       });
     }
+
+
+    function updateWeeklyItem(item) {
+      const rawValue = parseFloat(item.dataset.value); // 0 → 10
+      const isActive = item.dataset.active === "true";
+
+      const bar = item.querySelector(".weekly-bar");
+      if (!bar) return;
+
+      // 🔥 Normalize (0–10 → 0–290px)
+      const maxHeight = 270;
+      const value = Math.max(0, Math.min(10, rawValue)); // clamp safety
+      const height = (value / 10) * maxHeight;
+
+      // Apply height
+      bar.style.height = `${height}px`;
+
+      // Apply color
+      bar.classList.remove("bg-[#369FFF]", "bg-[#DCE6F1]");
+      bar.classList.add(isActive ? "bg-[#369FFF]" : "bg-[#DCE6F1]");
+    }
+
+    function initializeWeeklyActivity() {
+      const items = document.querySelectorAll(".weekly-item");
+
+      items.forEach((item, index) => {
+        setTimeout(() => {
+          updateWeeklyItem(item);
+        }, index * 100);
+      });
+    }
+
+
+    function watchWeeklyActivity() {
+      const items = document.querySelectorAll(".weekly-item");
+
+      items.forEach(item => {
+        const observer = new MutationObserver(() => {
+          updateWeeklyItem(item);
+        });
+
+        observer.observe(item, {
+          attributes: true,
+          attributeFilter: ["data-value", "data-active"]
+        });
+      });
+    }
+
 
     // main functions
     function renderSidebar(data) {
@@ -614,9 +689,11 @@ ${renderMainTopStrip(data)}
 
     ${data.courses.map(course => `
       
-      <div class="relative p-4 sm:p-4 xl:p-3 rounded-2xl xl:rounded-3xl text-white 
-                  overflow-hidden min-h-[140px] sm:min-h-[150px]"
-           style="background: ${course.bgColor}; box-shadow: 0px 10px 30px 0px ${course.shadowColor};">
+<div 
+  class="course-card relative p-4 sm:p-4 xl:p-3 rounded-2xl xl:rounded-3xl text-white 
+         overflow-hidden min-h-[140px] sm:min-h-[150px]"
+  data-progress="${course.progress}"
+  style="background: ${course.bgColor}; box-shadow: 0px 10px 30px 0px ${course.shadowColor};">
 
         <!-- Top-left overlay -->
         <div class="absolute -top-8 -left-10 sm:-top-10 sm:-left-12 
@@ -662,22 +739,21 @@ ${renderMainTopStrip(data)}
                 fill="none"
               />
 
-              <circle 
-                cx="25" cy="25" r="21"
-                stroke="white"
-                stroke-width="4"
-                fill="none"
-                stroke-linecap="round"
-                stroke-dasharray="132"
-                stroke-dashoffset="132"
-                class="progress-ring transition-all duration-700"
-                data-progress="${course.progress}"
-              />
+             <circle 
+  cx="25" cy="25" r="21"
+  stroke="white"
+  stroke-width="4"
+  fill="none"
+  stroke-linecap="round"
+  stroke-dasharray="132"
+  stroke-dashoffset="132"
+  class="progress-ring transition-all duration-700"
+/>
 
             </svg>
 
-            <div class="absolute inset-0 flex items-center justify-center text-[12px] sm:text-[14px] font-semibold">
-              ${course.progress}%
+            <div class="progress-text absolute inset-0 flex items-center justify-center text-[12px] sm:text-[14px] font-semibold">
+              0%
             </div>
 
           </div>
@@ -911,25 +987,27 @@ ${renderMainTopStrip(data)}
                   xl:min-w-[300px] 
                   h-[300px]">
 
-        ${data.weeklyActivity.map(day => `
-          
-          <div class="flex flex-col items-center gap-1 sm:gap-2">
+${data.weeklyActivity.map(day => `
+  
+  <div 
+    class="weekly-item flex flex-col items-center gap-1 sm:gap-2"
+    data-value="${day.value}"
+    data-active="${day.active}"
+  >
 
-            <!-- Bar -->
-            <div class="w-[15px] sm:w-[22px] xl:w-[30px] rounded-full
-                        ${day.active ? 'bg-[#369FFF]' : 'bg-[#DCE6F1]'}"
-                 style="height:${day.value}px">
-            </div>
+    <!-- Bar -->
+    <div class="weekly-bar w-[15px] sm:w-[22px] xl:w-[30px] rounded-full transition-all duration-500">
+    </div>
 
-            <!-- Label -->
-            <span class="text-[11px] sm:text-[12px] xl:text-[14px] 
-                         text-black font-medium">
-              ${day.day}
-            </span>
+    <!-- Label -->
+    <span class="text-[11px] sm:text-[12px] xl:text-[14px] 
+                 text-black font-medium">
+      ${day.day}
+    </span>
 
-          </div>
+  </div>
 
-        `).join("")}
+`).join("")}
 
       </div>
 
@@ -947,9 +1025,13 @@ ${renderMainTopStrip(data)}
 
       handleSearch();           // search
       handleCalendar();         // calendar
-      animateProgressRings();   // rings
+      initializeCourseProgress();   // rings
+      watchCourseProgress();
 
       handleTopBar("desktop");  // right panel
+      initializeWeeklyActivity();
+      watchWeeklyActivity();
+
       handleTopBar("mobile");   // mobile strip
       handleTopBar("sidebar");  //sidebar
       handleSidebar();          // hamburger
